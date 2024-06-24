@@ -1,0 +1,672 @@
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: localhost    Database: userservice
+-- ------------------------------------------------------
+-- Server version	8.0.37
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `userservice`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `userservice` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `userservice`;
+
+--
+-- Table structure for table `authorization`
+--
+
+DROP TABLE IF EXISTS `authorization`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `authorization` (
+  `id` varchar(255) NOT NULL,
+  `access_token_expires_at` datetime(6) DEFAULT NULL,
+  `access_token_issued_at` datetime(6) DEFAULT NULL,
+  `access_token_metadata` text,
+  `access_token_scopes` text,
+  `access_token_type` varchar(255) DEFAULT NULL,
+  `access_token_value` text,
+  `attributes` text,
+  `authorization_code_expires_at` datetime(6) DEFAULT NULL,
+  `authorization_code_issued_at` datetime(6) DEFAULT NULL,
+  `authorization_code_metadata` varchar(255) DEFAULT NULL,
+  `authorization_code_value` text,
+  `authorization_grant_type` varchar(255) DEFAULT NULL,
+  `authorized_scopes` text,
+  `device_code_expires_at` datetime(6) DEFAULT NULL,
+  `device_code_issued_at` datetime(6) DEFAULT NULL,
+  `device_code_metadata` text,
+  `device_code_value` text,
+  `oidc_id_token_claims` text,
+  `oidc_id_token_expires_at` datetime(6) DEFAULT NULL,
+  `oidc_id_token_issued_at` datetime(6) DEFAULT NULL,
+  `oidc_id_token_metadata` text,
+  `oidc_id_token_value` text,
+  `principal_name` varchar(255) DEFAULT NULL,
+  `refresh_token_expires_at` datetime(6) DEFAULT NULL,
+  `refresh_token_issued_at` datetime(6) DEFAULT NULL,
+  `refresh_token_metadata` text,
+  `refresh_token_value` text,
+  `registered_client_id` varchar(255) DEFAULT NULL,
+  `state` varchar(500) DEFAULT NULL,
+  `user_code_expires_at` datetime(6) DEFAULT NULL,
+  `user_code_issued_at` datetime(6) DEFAULT NULL,
+  `user_code_metadata` text,
+  `user_code_value` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `authorization`
+--
+
+LOCK TABLES `authorization` WRITE;
+/*!40000 ALTER TABLE `authorization` DISABLE KEYS */;
+INSERT INTO `authorization` VALUES ('15881efd-30a7-4ece-909b-6a077ba8f742','2024-06-16 13:47:27.205501','2024-06-16 13:42:27.205501','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718545347.205500700],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"roles\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718545647.205500700],\"iat\":[\"java.time.Instant\",1718545347.205500700],\"jti\":\"2dca2559-2ec5-475d-b179-d53c71981200\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJmZGRlMDM4My02YTI4LTRjNmYtYjlhMS1hOGY5ZTg2YTI3MDAiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg1NDUzNDcsInNjb3BlIjpbIkFETUlOIl0sInJvbGVzIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODU0NTY0NywiaWF0IjoxNzE4NTQ1MzQ3LCJqdGkiOiIyZGNhMjU1OS0yZWM1LTQ3NWQtYjE3OS1kNTNjNzE5ODEyMDAifQ.Lx4n-IO7LirZfJ5O6QEthBnbT0H68saoYC82Kh1Uk_mToQMvknUMPQjIPo_se6xeRWrMrsQHu4bZVrdJx6XDAfPpGbjgmZDn0Q_i3xbmzOvAQtcTX2_4qCSzJXPUfvKpCrbvAnkDoO7J0cbiqTZbs1dqk0UWj7duFVfa4f547VpHPnNE-GGVoR5MmRgxAAJZj1kRl5ybEE1Pwe5fpZ3vay_QVE0j7rShxOywbR4-9ycHfgByLO7V2_jsE2cuB4wR3PtrByPsoEmmOtPBaEcl7sS7pKwvGb7zKQuDRE9J_NZYpsBJnI1Tz_9ssRU32Rwf8Oc_n4mRPY9Lp1SmJUabsQ','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[{\"@class\":\"com.project.userservice.security.models.CustomGrantedAuthority\",\"authority\":\"ADMIN\"}]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"E10C790EB925D6DCC9FA8FB5579550C6\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[{\"@class\":\"com.project.userservice.security.models.CustomGrantedAuthority\",\"authority\":\"ADMIN\"}]],\"userId\":1},\"credentials\":null}}','2024-06-16 13:47:25.075585','2024-06-16 13:42:25.075585','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','5LNrjA0DOxBIF8fnEQfJR79bDTjXumWZG19oc98Zk7juk_DhwMrStE59GNmN8-yDVC10q1cj2SF2V1MHLWDo9xTEodZw2noYUzlzkkQH7OFQz3aNFd2AjT_fWnDVXha6','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-16 14:42:27.252973','2024-06-16 13:42:27.252973','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','FLe3_kXjQyjwYLBpQBY6-1AC62GizzCIycmn0hX9-l4UqO6OyFbo0Z4TQ0Q3Q8HXQhnvG7cK9PA3YuP36tkShl2Jq5aT5Jr0XQksB6Uyqy6AYrKJxznlMMuSZE-o0yBC','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('1b314d56-0543-427f-b148-81d3bf2e30f3','2024-06-15 15:15:53.483891','2024-06-15 15:10:53.483891','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718464253.483890900],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718464553.483890900],\"iat\":[\"java.time.Instant\",1718464253.483890900],\"jti\":\"8eb71f13-bc0c-45a6-8de9-f150319bf3ab\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJjMDQ3ZmJlMC04OGNlLTQ2MWQtYjYxMS0xNDRlNDhlYzg5MjgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg0NjQyNTMsInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODQ2NDU1MywiaWF0IjoxNzE4NDY0MjUzLCJqdGkiOiI4ZWI3MWYxMy1iYzBjLTQ1YTYtOGRlOS1mMTUwMzE5YmYzYWIifQ.cunFiXaGm7-P6bYNduCZQwMPum5OaV7Frb9gkhbuGanL-oO5nAtkPJBJ2lto7mD5Fq3p-9Jd0vxuQeQEFVqsGqm1o8liCBKxvgekr37mqhIBaerM8agMSnolxYRjd_9k1ewjCU3RuZ4YTfcaWGbB0nDddD2AqRR6Toq4Ki2QkSE5UBMOnKO02Rrere3_VCB5Z6lz0e02-rd48sIY0xfrhtrkRUpm48QR3cyJjsNqSuBFxJFvtlLMFdyaZPSsqlJIm-1rrGf_he5HwhkkHs4rnLlfeCWAMtzt-J8rAUkSr7UiaPYcqfwsQZD6-rbPQaRmpML8NcoCs0rwqf5H0tyVNg','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"336878CB0E276164A829908A1985A1E8\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-15 15:15:51.798887','2024-06-15 15:10:51.798887','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','aRkOW4z1ltg8HzGiZGPRiGgZAQawAx-EUEI7vft1AnjkHvc7a3BdYzyFgHQv-ucEjLAYkQyY56LcrawDdZry9clK2KjziEuRjQfzmhPRS8dinYKgMfhxlXSD6lZ0r7ch','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-15 16:10:53.493893','2024-06-15 15:10:53.493893','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','QjdZkw5ksQ9CWijc8TTogp9Q-NzSbpg86sRqPG_tki1IbmHgMEun1_uasxbfQBu5zfGCdoplb-tdmH0c31Ddh4ECysUfNZ2JFwtd0ujNpC_V4sJqaudhG29SIAPzta2S','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('2bc842c9-aa52-42c5-896c-3a0c0d15c6cd','2024-06-14 03:28:19.001222','2024-06-14 03:23:19.001222','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718335399.001222300],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718335699.001222300],\"iat\":[\"java.time.Instant\",1718335399.001222300],\"jti\":\"c35e4214-1c5b-45c3-a27e-5b97fa3d3837\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiI5ZTJlZTcyNy02ZTAzLTRjMTktODkwOS02ZTk1NjI0YjlmYjgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTgzMzUzOTksInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODMzNTY5OSwiaWF0IjoxNzE4MzM1Mzk5LCJqdGkiOiJjMzVlNDIxNC0xYzViLTQ1YzMtYTI3ZS01Yjk3ZmEzZDM4MzcifQ.dEZayGwI6AcRoAqOxpjqPx8_rsXawfWlkvBToZPjjZE7imTBOzx7mBk3sk7XpglH6BCb-txQxd6lB-ORqaD5_XtlMEH_P2OQh4wZGbl2DXcpf0rOcINqVqSP6XM0W5ddaLTC5OJEXPHEdyI4DRicoT_NLVOxTfwGXqvTxjajfsRUkvNyp8pZnn33NLuHgDRyxpua9ZoWqlvtNSC516hyltm5F8dE5-r6g8DIfYNP2Le4BnLHpZ5Ip__ceExMKxHab4SRpAevfBwmc8JwZ7byvbs97Jlqxg832X3Z3NBtYkn7xkBpzH_lDu0e072RQDas7W1BFA3_FVS8FV9qiNCaOw','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"70D913CD1EDDD2D0526FBF599BC114D5\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-14 03:28:17.175450','2024-06-14 03:23:17.175450','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','twrqRxgpX9UxTqHslUGWw5tEuL6BuklKPWpCpOA2UNIbO7B79VEVhmUVbA4Ev9nbUBou1W5Z_XsONmypP577dKaCzPDIy0tJ-P_aCsaG8U4pYOIhTqeofW7WfOz-fVNn','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-14 04:23:19.060623','2024-06-14 03:23:19.060623','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','r7mHUc6h4JGnpmRarl9rL3VUCzWCciayCzU36mLOZJCCOLiLgp-Yts1pE0tqt-wvYPYqAEIUjxowjyRhAG7QO30oOZsqf4Hr3JyojvxAJfDuIQqDeoqzLp870IRAGYUL','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('4d901244-ad25-446a-b0c1-de083b12c234','2024-06-15 15:28:51.411224','2024-06-15 15:23:51.411224','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718465031.411224200],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718465331.411224200],\"iat\":[\"java.time.Instant\",1718465031.411224200],\"jti\":\"155a6911-1e71-420a-87e1-d3d7707adad0\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJjMDQ3ZmJlMC04OGNlLTQ2MWQtYjYxMS0xNDRlNDhlYzg5MjgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg0NjUwMzEsInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODQ2NTMzMSwiaWF0IjoxNzE4NDY1MDMxLCJqdGkiOiIxNTVhNjkxMS0xZTcxLTQyMGEtODdlMS1kM2Q3NzA3YWRhZDAifQ.cbvB9KzSLkdeiJL5a9lw-Il9P-6cPxmV0wdZl-dV8edLM8MMUmDxkRaf3TaoCKoZIkaEnoJQLgYdkWuSrm2HvsByXhlCnb7VJ8mpv7yZgCtTVx20-gTH9qVlx4EIBQ9krydDQXhDCKLjYWD6a7lOvpaD968mRFvhHWHGZBdTlytfVc3k-YuiN0Q1RvvZsYdih2S01A_WPju21XcRluQOKNKlFjFy51epzk7EmCwYV1DQ0G7Lyn8bXE4F0rcSurzOvIcPhRUXaGDUyXmk4ZsvtQKjq7AUT0YWA8GTVl2cQRm9yBC_1PycY3mhpk7lHFPIVyRWRYky9NoIdXD8Kt5SFg','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"336878CB0E276164A829908A1985A1E8\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-15 15:28:49.802943','2024-06-15 15:23:49.802943','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','VAxJY7OjjMoF8kxWsKDowlRp_8GrKDBlJ8digmmKlVBKi2BKoJw0bzB4W9-ZX3bOOU626bhDIHIV2R2W0f-LkVyyQo1iF3nYEKPV-LiqSOWJbT0A1W7_WpmjOer80euJ','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-15 16:23:51.422223','2024-06-15 15:23:51.422223','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','0SSiVB6nYeRgusIgkB1dVYYL1cyWTq-zO8091jhPXnG5bH8IR2yO6olKFGIySSZ5U6z2cMMQ11pVvMediZl5rCXzyPO0am9RzLiZRtUfFWEEJCbh47HuAspTptM_CW5n','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('67ed13d3-2f91-4e0d-9d19-b01ef0321733','2024-06-15 13:47:28.434424','2024-06-15 13:42:28.434424','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718458948.434423900],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718459248.434423900],\"iat\":[\"java.time.Instant\",1718458948.434423900],\"jti\":\"0c61e38c-7551-4db7-9dfe-eb7a33a0b7ed\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJjMDQ3ZmJlMC04OGNlLTQ2MWQtYjYxMS0xNDRlNDhlYzg5MjgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg0NTg5NDgsInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODQ1OTI0OCwiaWF0IjoxNzE4NDU4OTQ4LCJqdGkiOiIwYzYxZTM4Yy03NTUxLTRkYjctOWRmZS1lYjdhMzNhMGI3ZWQifQ.qezpXAsJHeazcIbwK2PtU_cionmVLPlz3GfVjGzb9oE3s1661ZigQAeNKEIs7qevPuTmnyPqkp14ESGZaNP6shZJRFmUyylbF9FqDdTfJjKvGTBpxX9AbgRaGqZkHWNBLF41u0PiciD-LeMQeiIbpCRSK7Sn6QOk5ZMfvB7HwPw7qZmeJO7dx9R3zZIMTK5JFydpra5pQ6m40ZH-ieWU-x4eBpB6C6uHVsXjpCuxRwyJwUE4MOrZTb5NgXeqg4_Vca7_Fk2Q2tikYC9iL_f1UnfO14P99DYarvg1cRjA8ja5kbnPNJxOfUeJsVsnsg8Jr3CalxCw4udfsfYqWmfsTg','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"DB1CBEEF06F617DE325E11CCCE78ED26\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-15 13:47:26.727809','2024-06-15 13:42:26.727809','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','G9VprnpD4RzMvJNY6xMYxgR3VDGYeP7AmmLoFi9YPuRkq46oUn-YPgWl5tMXL97pU9X9LHodYqMz6XJTJuRj68nEmDy2FpGmo-wKgBiPpApfxEKj9MQIohLNiDi6tFxO','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-15 14:42:28.483425','2024-06-15 13:42:28.483425','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','fd7Z7oWD4BkJeiBGlavWoYDtLm76sSXWSz5Wib5CcAyYa5cF_JkghUuk-KKS1ORF4FPZBcG85eYjS5szJQ0aKBUqLWi9aSI7WmqudDhVqSdIXmYIiWR_l_uM2_99K5nd','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('99a1feaf-a435-4077-99e8-e3d1b5490e35','2024-06-15 13:14:48.090402','2024-06-15 13:09:48.090402','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718456988.090402400],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718457288.090402400],\"iat\":[\"java.time.Instant\",1718456988.090402400],\"jti\":\"91ed51c3-8153-459b-a8d9-62318223cfaf\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJmNzQ2ZTlkYS0yZjUxLTRkNzctOTM4Yy02YTkyNWQ3NDBiOWIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg0NTY5ODgsInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODQ1NzI4OCwiaWF0IjoxNzE4NDU2OTg4LCJqdGkiOiI5MWVkNTFjMy04MTUzLTQ1OWItYThkOS02MjMxODIyM2NmYWYifQ.UBQvTUp8JbmaW_tqh6WeByrkqC6rkkQGX7eiTkGjgbJGLs2i6NALCjx3nGC_Nf8ThrkTeAUuGiIeeegn0zu_6YwKVsA6woXtsEFNF2omKs9U_bqyFieJ8gs7HB5Q7kOLxgCW5MEXY2J6v4USqjfCCa-CBJox1PXmPl33IpIMBMNhW-ALQxk0uqRqmWnzzPSMa8bi7A1cUZ7MTAiSDklQ0lNO86Jmfy-0mPnXN1rssjoIM2X9FLMO92kPvxPZKi4_VnlvohGgvkeC8Blry76ImVZ3F98RjIYZf3qfZoOFZd2VBLnKYkcFQQmB2fJRh677yLYKd87oy5DdVI-8YdTzkg','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"AAD5D14059BC232D508C1150627245F5\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-15 13:03:27.099531','2024-06-15 12:58:27.099531','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','o10VsgACPaINe0h68yISbRErtehhc_zGpupqHGhp_-PdAVdDLuw7NncxH9-p8z0wy0XcjmQqjuCW2IoaaDu0H1sIpq9v71GH-NxWQNCiqkHfQvqqW59a-C_dc3uH_GC3','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-15 13:58:29.043634','2024-06-15 12:58:29.043634','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','5dyE6fIDIY1YXYl5d_5WRzVaUMF_xl7UDTUH9j4tUbPnOyBY11AkO779y0l7N8_Zs7L_ofnSTVUh_kKF8JZKwkshi-wQ1D97AZ6xaH7EuliZR1lSPiu1c0JvGJQUVMA4','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('9bd6fc7a-ef54-44fd-9abc-2624be19b3fa','2024-06-17 17:50:22.558841','2024-06-17 17:45:22.558841','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718646322.558840600],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"roles\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718646622.558840600],\"iat\":[\"java.time.Instant\",1718646322.558840600],\"jti\":\"2375d8ed-a41b-4a4b-81a6-39c3608001cf\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJjZjA2NzBjNC02MjI0LTQ2NmItYTIyZi04MjljZjA3NjBkZDAiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg2NDYzMjIsInNjb3BlIjpbIkFETUlOIl0sInJvbGVzIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODY0NjYyMiwiaWF0IjoxNzE4NjQ2MzIyLCJqdGkiOiIyMzc1ZDhlZC1hNDFiLTRhNGItODFhNi0zOWMzNjA4MDAxY2YifQ.dWQ3B10eRDMfdgrNdgoYETVs8ZEG-bWQL6uDU_wXgmafKWheJ3xCBV9BUKJvfPGf7R5Cpa25p0iceUlLJ_t_q_YbNZ3H5uJsb70WNDFH8RjRwmA_L27mBsUFH9fF2x2I_Os7M1KCQ3GklKDiASw_gTvHW8kP5v_n9kvsXqgLat-g3lBlSTYzd5blsQ811UJe8omEeZgIDVrTGE19ulmbazqKF8THfpeaxtmY8NZr4xgVGw_AGmh0IhJkt-GxmQFxK6sNEqAy4u8b0tg3lQXW4uSnfTNezkEVeHtPVbkNvnvDFD4xHeOUwb9Ay5eFcM6Edwfs7ptZcQ_8pmbD7d_7jg','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[{\"@class\":\"com.project.userservice.security.models.CustomGrantedAuthority\",\"authority\":\"ADMIN\"}]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"23897230F049A5C2F632E7D6B5079119\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[{\"@class\":\"com.project.userservice.security.models.CustomGrantedAuthority\",\"authority\":\"ADMIN\"}]],\"userId\":1},\"credentials\":null}}','2024-06-17 17:09:07.838411','2024-06-17 17:04:07.838411','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','s-9W-KXlaDh8m4Ib1fzb2HymBwZyzcFBxZv4m6QAssL-Th4vi0kZ9zxata3dLfpW8V--76_Z_CQ32Olb-NxL6sr6iC3CwlWN225Eeu-BBfLGVBPjBSXk1S9XEB3SGybL','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-17 18:04:10.648864','2024-06-17 17:04:10.648864','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','WgR2LACERj8r4NzvSJ85HyFQinrc-9EETqYZZae6i08qPu6frwQguS1heXdk5ItAFF8cBCWs2-KslwXqy59q5QJXBDJDu_UBbj-jB1IsU1lClHjRt0-crIZ6eRIfh3DB','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('b7634a48-137e-4352-85b8-45b965e82d1e','2024-06-15 13:31:05.069364','2024-06-15 13:26:05.069364','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718457965.069363700],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718458265.069363700],\"iat\":[\"java.time.Instant\",1718457965.069363700],\"jti\":\"f90276f1-8ce3-41d1-836f-b88484408101\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJmNGM1ZDQ4ZC0wMGE4LTQ3ZGQtOGMwMC0xZmU2MGVhYzg1NDQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg0NTc5NjUsInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODQ1ODI2NSwiaWF0IjoxNzE4NDU3OTY1LCJqdGkiOiJmOTAyNzZmMS04Y2UzLTQxZDEtODM2Zi1iODg0ODQ0MDgxMDEifQ.U67tTPRzEGir-0LQEZaxwqG0cYnV1OG-06SpkZaDdli58p8JZPxpVYiasUTCnK2wbwYLReNfEvPaNYcRhOGZCXj1km2GyoSCUAKn1Jf1AIt7jAps2r8w4pSdVvt_659Ou3FMXhbpq1pml28Z25zt2wXT0He0BZLDS4NopmiYiROWvtMzmGdJSrrS1cFBSNZdyCuwYlMT3jIJy5fgWQU5291YE1Ru0EVx1XwKGwUyC375dWDhZ6kDxk-quwYmwIsaLvrj5F-bsJFu6S1neYHUxN4egPQqMcsFe8c95KUCNr4gEfNz0bra7ownkfSuqNRbM3kSREEdRKNQObDrc0JrqQ','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"0F57436CB0AA1296B7E76243DAB3A0AC\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-15 13:31:03.322267','2024-06-15 13:26:03.322267','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','QBkUdh2c6_Z2aFhCgNhjIWfPxeT39R54zi5U1zHqQtnxGnGCDR8fiDrXqgExH1RTVKydG31E6Fovw9TRxKSZlh4bJnTvchvHKAamRW8fBffV_RbtaLXWNG7C5ZGyZzys','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-15 14:26:05.120375','2024-06-15 13:26:05.120375','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','_bfK11bCCqilNLOhMJrxMSBX3MmGpgCQErzBC2SqF4hSrsXZqKU7PdUGgw0AwprGD1lhfOHCBbR18q3-r2QUzNoGvwZjVbvVaJGGWHYrC4zHRtAbmsTs8FT_3nY2MKpL','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('b9f73ac6-33fb-4308-9f6c-52f7d63b0a9b','2024-06-13 17:29:39.689762','2024-06-13 17:24:39.689762','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718299479.689762000],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718299779.689762000],\"iat\":[\"java.time.Instant\",1718299479.689762000],\"jti\":\"a603a0d7-ccbe-4f3e-947b-a3fdc0211ed1\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiIxYWExNDQ1Ny1lN2I5LTRhOTYtYmY4MC03OTBiYzc0ZTZhMDUiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTgyOTk0NzksInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODI5OTc3OSwiaWF0IjoxNzE4Mjk5NDc5LCJqdGkiOiJhNjAzYTBkNy1jY2JlLTRmM2UtOTQ3Yi1hM2ZkYzAyMTFlZDEifQ.LGGdOriXmYLF208xwiku1-SSlovOtlrZWHavKBUn5Pv9nC3LCL5I9TJeTsU-YzQ1E21tVOtqrELIznhObN771mJcJStH1YIqOz6iveJjJe5zzYrI_ZrwpxS2WZvApItSas9XHBZpr1o5W09lziHvpK8fA8R7QvObLZe-wJCFcc1cd8UAAvbHF6SHJQo8QfFXV9gfLO4FfaOuncuiNT-W9I66luDBWIUYTfUr1dVgbZRmePLkf5bBDdiy4lbDTMn_1iu-C5Evc6_ABlCcXOax685BYjEpavzF9Cn2eRmLI5k_prUiCtwlNHRMyWFnuJIY3KqlKZLh3SpliMdcE0BT1Q','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"F32829AA7811E077F2377EB612024272\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-13 17:29:37.933827','2024-06-13 17:24:37.933827','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','_-_wne31PwGfyOVDrl1Nzg-YwSTdmvriDVI-fXPlT7R-qs5Rp3ESBWQRqrJSVa7nHqIRQZqfoRw38L9jkfRklrqdwZXTDxcWaiaOlQaXzH_oTItrPDr7m8NsuLfsWyDI','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-13 18:24:39.750893','2024-06-13 17:24:39.750893','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','2NZ9S-888IW3Ukzf1cAeK6H1sTUCTskY_gVYLhGJOjodam1DN4qM5SG7_P0Dck3sIIA-SEK1X846h_CuCidg48f41gzcAXzwT0NCpXXmK9yjGbAZkeo4yFbC6o32FNmj','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('e5535c4d-029e-4870-8b50-47ccca6df14a','2024-06-14 03:38:29.061639','2024-06-14 03:33:29.061639','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718336009.061638800],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718336309.061638800],\"iat\":[\"java.time.Instant\",1718336009.061638800],\"jti\":\"54d52202-4ee2-48dc-a75f-5d31a8a87410\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiI5ZTJlZTcyNy02ZTAzLTRjMTktODkwOS02ZTk1NjI0YjlmYjgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTgzMzYwMDksInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODMzNjMwOSwiaWF0IjoxNzE4MzM2MDA5LCJqdGkiOiI1NGQ1MjIwMi00ZWUyLTQ4ZGMtYTc1Zi01ZDMxYThhODc0MTAifQ.LD9UmrlFXVeK5AYC--O1Hma3hgAZxAb2nVIGlKCwsi2-5LXVfOJQbrKtG1CYTvGtdYiOyt-_P43-nG3MDocZqzYFQsO-WukVdqg9EhhSuIdC2qSxcou5Fiia40bIP05bytsEEFza3uqZpjwQ1HyK9-xqs_9hWYVqBZik76gNKMreOHGMJczywdnwPoywFMy2uinVErtzZsjUnBpgldblpVdmnnud_JrxHW8yOYZhG5FXgFDPjowK2td2mL_exE5dYhVPGOsN85Kga6A-rJTpQm2YXtSRsIHpAw9d1JSayc9La0vTB6jlgzj0DH9Jw50rA-Cv1c_NOGv5gsm1bwj2xw','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"70D913CD1EDDD2D0526FBF599BC114D5\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-14 03:38:27.502205','2024-06-14 03:33:27.502205','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','kAihTyVrrVrWDxBGAWUHMwDEhLtcYvgipQUYSzOqdKhnoRVIEr2Yq0EqhoUOQ844BWx2BND1Fv3gYu8vvSrqboFNSbAKbDj8OQcoUZcZyd44YisIvxyv5-_rwqh7DDXW','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-14 04:33:29.072641','2024-06-14 03:33:29.072641','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','oA7T5lFD-dZ9tJH4jE9YNFgPjMHvYrFo9BVzXIW4roo16Bsc2irwK_BqpsJwrGxxoJDqp1jNRuvBCOHCCa1f83Lu5BU8WnIoh6chqq6RkcAh4ofDv4AUK3EEm_wwZG7E','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('e56d5e8e-c756-4926-b02d-a0f0d243cd88','2024-06-15 13:58:25.304973','2024-06-15 13:53:25.304973','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718459605.304973200],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718459905.304973200],\"iat\":[\"java.time.Instant\",1718459605.304973200],\"jti\":\"5c0e8d26-5b22-4e75-bd0d-eb61698eaa03\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiJjMDQ3ZmJlMC04OGNlLTQ2MWQtYjYxMS0xNDRlNDhlYzg5MjgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg0NTk2MDUsInNjb3BlIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODQ1OTkwNSwiaWF0IjoxNzE4NDU5NjA1LCJqdGkiOiI1YzBlOGQyNi01YjIyLTRlNzUtYmQwZC1lYjYxNjk4ZWFhMDMifQ.TeHMm38p4lTz6I5Xw4xJHeJjZ63uhSyHGJL4VilXRZW8xYjH4nbZrxw7cJ2KAW3AnLSr5RXxX9Kn8z4m9txfrVd3IbJdOaYkkTFZ9Cgz6KDwDaxbcebuXqNm-h1ipj__lgoN1sZL9onRwWsbUJsetL-kk7mghoURTEMM9ZzskALDt_KPYup42YfsS5NH0g2ncSDhrJAyxhgx8YTfl0xre9kyRHA9TVzIznB-CtnKYfJaDgdDB1tSWpiOxC95FijFNRarUG7fzZ0LO7SbNle6f-aJrGyOz9a0YpqJUSTCuyNPDJDI7p8v4OPagbbgTTGQmxDy5-jK92V5GkuN7NJHCA','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"D02C7084000D82423C905E90F291A232\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[]],\"userId\":1},\"credentials\":null}}','2024-06-15 13:58:23.747819','2024-06-15 13:53:23.747819','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','6nG6Fq-053WWx5OfbdDr0Dsnf1cOV509EZhrCPnDWrzuH1dvLvJ2MFgSyEHba3_gcLfXeRkJSjtChX5m0JAvAHFa0WbaBd0kX6wCrEqzynjs-JnF4w_MsAhl9KTmcoIa','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-15 14:53:25.316010','2024-06-15 13:53:25.316010','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','HHeH8wvTTIUVLBoB1mcNWwJx7hY7zkccCAh6eAuUscqojv3miBVC_TuSkRW9nqxe12lU-wZ-_fB-Humcdl1oaejYBGTwo10DcnmWOTFHYDQ4wpy8QwpkUPCO2z9aeYav','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL),('f7c738eb-c407-461b-9101-596aa926b0b8','2024-06-15 15:58:38.747999','2024-06-15 15:53:38.747999','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\":\"self-contained\",\"metadata.token.claims\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"sub\":\"nikhil@scaler.com\",\"aud\":[\"java.util.Collections$SingletonList\",[\"postman\"]],\"nbf\":[\"java.time.Instant\",1718466818.747998700],\"scope\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"roles\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"iss\":[\"java.net.URL\",\"http://localhost:9000\"],\"exp\":[\"java.time.Instant\",1718467118.747998700],\"iat\":[\"java.time.Instant\",1718466818.747998700],\"jti\":\"5772a66a-c0e8-4e71-b438-a7061814722d\"},\"metadata.token.invalidated\":false}','ADMIN',NULL,'eyJraWQiOiI5MGFjY2U5OC0xMDQ3LTQ2MTQtYmZjZC1kOTM4MDU4NjY5ZTMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJuaWtoaWxAc2NhbGVyLmNvbSIsImF1ZCI6InBvc3RtYW4iLCJuYmYiOjE3MTg0NjY4MTgsInNjb3BlIjpbIkFETUlOIl0sInJvbGVzIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImV4cCI6MTcxODQ2NzExOCwiaWF0IjoxNzE4NDY2ODE4LCJqdGkiOiI1NzcyYTY2YS1jMGU4LTRlNzEtYjQzOC1hNzA2MTgxNDcyMmQifQ.YdTXR_qi7SoOR3hjBhm_BWfc6vGlWv5UpbvOO2OXLd5zp38z5M0thyRQ5TANv119Zi6f7_9aWYehNxZVAMEnlVMsYQXRAEs7WPh1JneIlq7Y6Ai9Fbc_RAC7mQSMTjMl3Ka_CNBDVlEK3jemMDwfHtrLT-BiK4GRQEslnEMn7Vby3KMEuZhDhG726-OA59uf9nv9cEZzauU2KlNpHMbrJ3RRFyhuP2HEkbc4PqHHDufLoT-I5Gf8y0gaK44x6pMrm_pZoETMBVGb56kwz0SmKAxP-4kF-IIDaAABSP6AR675KJRCAes3tTXQG_dbJM80Mlmeo6dSwfxSbqPbKzzsfw','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\":{\"@class\":\"org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest\",\"authorizationUri\":\"http://localhost:9000/oauth2/authorize\",\"authorizationGrantType\":{\"value\":\"authorization_code\"},\"responseType\":{\"value\":\"code\"},\"clientId\":\"postman\",\"redirectUri\":\"https://oauth.pstmn.io/v1/callback\",\"scopes\":[\"java.util.Collections$UnmodifiableSet\",[\"ADMIN\"]],\"state\":null,\"additionalParameters\":{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"continue\":\"\"},\"authorizationRequestUri\":\"http://localhost:9000/oauth2/authorize?response_type=code&client_id=postman&scope=ADMIN&redirect_uri=https://oauth.pstmn.io/v1/callback&continue=\",\"attributes\":{\"@class\":\"java.util.Collections$UnmodifiableMap\"}},\"java.security.Principal\":{\"@class\":\"org.springframework.security.authentication.UsernamePasswordAuthenticationToken\",\"authorities\":[\"java.util.Collections$UnmodifiableRandomAccessList\",[{\"@class\":\"com.project.userservice.security.models.CustomGrantedAuthority\",\"authority\":\"ADMIN\"}]],\"details\":{\"@class\":\"org.springframework.security.web.authentication.WebAuthenticationDetails\",\"remoteAddress\":\"0:0:0:0:0:0:0:1\",\"sessionId\":\"6CD8E2103A64B59A92FCFACE2B71BBEF\"},\"authenticated\":true,\"principal\":{\"@class\":\"com.project.userservice.security.models.CustomUserDetails\",\"username\":\"nikhil@scaler.com\",\"password\":\"$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"authorities\":[\"java.util.ArrayList\",[{\"@class\":\"com.project.userservice.security.models.CustomGrantedAuthority\",\"authority\":\"ADMIN\"}]],\"userId\":1},\"credentials\":null}}','2024-06-15 15:58:37.074575','2024-06-15 15:53:37.074575','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":true}','e2Kr2ylPckmzJO6nKLbKFbRznCRe0QZxY8l4SN4Cluwf-FWxyej-x8hGji5mSnaN-aw7Vr8wXHipjrBrPjtPCKpJJUC1LJerkav_tfhkr-9xWGswVHt8kq9luQPGka5H','authorization_code','ADMIN',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'nikhil@scaler.com','2024-06-15 16:53:38.795018','2024-06-15 15:53:38.795018','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"metadata.token.invalidated\":false}','DqyKWUa9TDmjv8TA1Fpndaoh23xIfqEow_bl18yLnhqq6NQ3MUD-lrxVhdDgDwYBL5lg9Z4FgONYC75qA2bnXc85jOsdQYOsdbJKXy2vz4sZaWXiiXdmoZRWZlKH9KpE','8365fd34-a63f-4175-9c42-835cf89f19b9',NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `authorization` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `authorization_consent`
+--
+
+DROP TABLE IF EXISTS `authorization_consent`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `authorization_consent` (
+  `principal_name` varchar(255) NOT NULL,
+  `registered_client_id` varchar(255) NOT NULL,
+  `authorities` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`principal_name`,`registered_client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `authorization_consent`
+--
+
+LOCK TABLES `authorization_consent` WRITE;
+/*!40000 ALTER TABLE `authorization_consent` DISABLE KEYS */;
+INSERT INTO `authorization_consent` VALUES ('nikhil@scaler.com','8365fd34-a63f-4175-9c42-835cf89f19b9','SCOPE_ADMIN');
+/*!40000 ALTER TABLE `authorization_consent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `client`
+--
+
+DROP TABLE IF EXISTS `client`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `client` (
+  `id` varchar(255) NOT NULL,
+  `authorization_grant_types` varchar(1000) DEFAULT NULL,
+  `client_authentication_methods` varchar(1000) DEFAULT NULL,
+  `client_id` varchar(255) DEFAULT NULL,
+  `client_id_issued_at` datetime(6) DEFAULT NULL,
+  `client_name` varchar(255) DEFAULT NULL,
+  `client_secret` varchar(255) DEFAULT NULL,
+  `client_secret_expires_at` datetime(6) DEFAULT NULL,
+  `client_settings` varchar(2000) DEFAULT NULL,
+  `post_logout_redirect_uris` varchar(1000) DEFAULT NULL,
+  `redirect_uris` varchar(1000) DEFAULT NULL,
+  `scopes` varchar(1000) DEFAULT NULL,
+  `token_settings` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `client`
+--
+
+LOCK TABLES `client` WRITE;
+/*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES ('8365fd34-a63f-4175-9c42-835cf89f19b9','refresh_token,authorization_code','client_secret_basic','postman',NULL,'8365fd34-a63f-4175-9c42-835cf89f19b9','$2a$12$1Fi/m1ovZgOFw7ty2ekxouzb1Wtz8wfVYeiwq2Wt.K52/9s.5hbKO',NULL,'{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"settings.client.require-proof-key\":false,\"settings.client.require-authorization-consent\":true}','https://oauth.pstmn.io/v1/callback','https://oauth.pstmn.io/v1/callback','openid,ADMIN','{\"@class\":\"java.util.Collections$UnmodifiableMap\",\"settings.token.reuse-refresh-tokens\":true,\"settings.token.x509-certificate-bound-access-tokens\":false,\"settings.token.id-token-signature-algorithm\":[\"org.springframework.security.oauth2.jose.jws.SignatureAlgorithm\",\"RS256\"],\"settings.token.access-token-time-to-live\":[\"java.time.Duration\",300.000000000],\"settings.token.access-token-format\":{\"@class\":\"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat\",\"value\":\"self-contained\"},\"settings.token.refresh-token-time-to-live\":[\"java.time.Duration\",3600.000000000],\"settings.token.authorization-code-time-to-live\":[\"java.time.Duration\",300.000000000],\"settings.token.device-code-time-to-live\":[\"java.time.Duration\",300.000000000]}');
+/*!40000 ALTER TABLE `client` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `is_deleted` bit(1) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,_binary '\0','ADMIN');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `token`
+--
+
+DROP TABLE IF EXISTS `token`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `token` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `is_deleted` bit(1) DEFAULT NULL,
+  `expiry_at` datetime(6) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKe32ek7ixanakfqsdaokm4q9y2` (`user_id`),
+  CONSTRAINT `FKe32ek7ixanakfqsdaokm4q9y2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `token`
+--
+
+LOCK TABLES `token` WRITE;
+/*!40000 ALTER TABLE `token` DISABLE KEYS */;
+INSERT INTO `token` VALUES (1,NULL,'2024-07-05 00:00:00.000000','wI4Mm60l2B',1),(2,NULL,'2024-07-07 00:00:00.000000','oa1UOoOaYx',1);
+/*!40000 ALTER TABLE `token` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `is_deleted` bit(1) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `hashed_password` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,NULL,'nikhil@scaler.com','$2a$12$3I1NwN.a57wNacwl1xSm9.lwWJMTcDfXWma34dHVLRhg.z5rNV0x2','Nikhil');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_roles`
+--
+
+DROP TABLE IF EXISTS `user_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_roles` (
+  `user_id` bigint NOT NULL,
+  `roles_id` bigint NOT NULL,
+  KEY `FKj9553ass9uctjrmh0gkqsmv0d` (`roles_id`),
+  KEY `FK55itppkw3i07do3h7qoclqd4k` (`user_id`),
+  CONSTRAINT `FK55itppkw3i07do3h7qoclqd4k` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `FKj9553ass9uctjrmh0gkqsmv0d` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+LOCK TABLES `user_roles` WRITE;
+/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
+INSERT INTO `user_roles` VALUES (1,1);
+/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Current Database: `productservice`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `productservice` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `productservice`;
+
+--
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,NULL,'Electronics'),(2,NULL,'Electronics'),(3,NULL,'Electronics'),(4,NULL,'Electronics'),(5,NULL,'Electronics'),(6,NULL,'Electronics');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `flyway_schema_history`
+--
+
+DROP TABLE IF EXISTS `flyway_schema_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `flyway_schema_history` (
+  `installed_rank` int NOT NULL,
+  `version` varchar(50) DEFAULT NULL,
+  `description` varchar(200) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `script` varchar(1000) NOT NULL,
+  `checksum` int DEFAULT NULL,
+  `installed_by` varchar(100) NOT NULL,
+  `installed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `execution_time` int NOT NULL,
+  `success` tinyint(1) NOT NULL,
+  PRIMARY KEY (`installed_rank`),
+  KEY `flyway_schema_history_s_idx` (`success`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `flyway_schema_history`
+--
+
+LOCK TABLES `flyway_schema_history` WRITE;
+/*!40000 ALTER TABLE `flyway_schema_history` DISABLE KEYS */;
+INSERT INTO `flyway_schema_history` VALUES (1,'1','init','SQL','V1__init.sql',-981592361,'productserviceuser','2024-05-21 16:44:58',345,1),(2,'2','init','SQL','V2__init.sql',-1118114514,'productserviceuser','2024-05-21 16:47:47',9,0);
+/*!40000 ALTER TABLE `flyway_schema_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jt_it`
+--
+
+DROP TABLE IF EXISTS `jt_it`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jt_it` (
+  `id` bigint NOT NULL,
+  `specialisation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_JT_IT_ON_ID` FOREIGN KEY (`id`) REFERENCES `jt_users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jt_it`
+--
+
+LOCK TABLES `jt_it` WRITE;
+/*!40000 ALTER TABLE `jt_it` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jt_it` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jt_mentor`
+--
+
+DROP TABLE IF EXISTS `jt_mentor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jt_mentor` (
+  `id` bigint NOT NULL,
+  `comp_name` varchar(255) DEFAULT NULL,
+  `avgrating` double NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_JT_MENTOR_ON_ID` FOREIGN KEY (`id`) REFERENCES `jt_users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jt_mentor`
+--
+
+LOCK TABLES `jt_mentor` WRITE;
+/*!40000 ALTER TABLE `jt_mentor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jt_mentor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jt_ta`
+--
+
+DROP TABLE IF EXISTS `jt_ta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jt_ta` (
+  `id` bigint NOT NULL,
+  `number_of_session` int NOT NULL,
+  `avgrating` double NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_JT_TA_ON_ID` FOREIGN KEY (`id`) REFERENCES `jt_users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jt_ta`
+--
+
+LOCK TABLES `jt_ta` WRITE;
+/*!40000 ALTER TABLE `jt_ta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jt_ta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jt_users`
+--
+
+DROP TABLE IF EXISTS `jt_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `jt_users` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jt_users`
+--
+
+LOCK TABLES `jt_users` WRITE;
+/*!40000 ALTER TABLE `jt_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jt_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mps_it`
+--
+
+DROP TABLE IF EXISTS `mps_it`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mps_it` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `specialisation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mps_it`
+--
+
+LOCK TABLES `mps_it` WRITE;
+/*!40000 ALTER TABLE `mps_it` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mps_it` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mps_mentor`
+--
+
+DROP TABLE IF EXISTS `mps_mentor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mps_mentor` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `comp_name` varchar(255) DEFAULT NULL,
+  `avgrating` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mps_mentor`
+--
+
+LOCK TABLES `mps_mentor` WRITE;
+/*!40000 ALTER TABLE `mps_mentor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mps_mentor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mps_ta`
+--
+
+DROP TABLE IF EXISTS `mps_ta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mps_ta` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `number_of_session` int NOT NULL,
+  `avgrating` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mps_ta`
+--
+
+LOCK TABLES `mps_ta` WRITE;
+/*!40000 ALTER TABLE `mps_ta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mps_ta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `price` double NOT NULL,
+  `category_id` bigint DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `quantity` int NOT NULL,
+  `available` bit(1) DEFAULT NULL,
+  `is_deleted` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_PRODUCT_ON_CATEGORY` (`category_id`),
+  CONSTRAINT `FK_PRODUCT_ON_CATEGORY` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,NULL,'Iphone 15',109.95,1,'Iphone 15 Pro',0,NULL,NULL),(2,NULL,'Iphone 14',103.95,2,'Iphone 14 Pro',0,NULL,NULL),(3,NULL,'Iphone 13',94.95,3,'Iphone 13 Pro',0,NULL,NULL),(4,NULL,'Samsung SE',100,4,'Samsung SE',0,NULL,NULL),(5,NULL,'Samsung S22',130,5,'Samsung S22',0,NULL,NULL),(6,NULL,'Samsung S23',135,6,'Samsung S23',0,NULL,NULL);
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sc_users`
+--
+
+DROP TABLE IF EXISTS `sc_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sc_users` (
+  `id` bigint NOT NULL,
+  `user_type` int DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `number_of_session` int NOT NULL,
+  `avgrating` double NOT NULL,
+  `comp_name` varchar(255) DEFAULT NULL,
+  `specialisation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sc_users`
+--
+
+LOCK TABLES `sc_users` WRITE;
+/*!40000 ALTER TABLE `sc_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sc_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tpc_it`
+--
+
+DROP TABLE IF EXISTS `tpc_it`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tpc_it` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `specialisation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tpc_it`
+--
+
+LOCK TABLES `tpc_it` WRITE;
+/*!40000 ALTER TABLE `tpc_it` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tpc_it` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tpc_mentor`
+--
+
+DROP TABLE IF EXISTS `tpc_mentor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tpc_mentor` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `comp_name` varchar(255) DEFAULT NULL,
+  `avgrating` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tpc_mentor`
+--
+
+LOCK TABLES `tpc_mentor` WRITE;
+/*!40000 ALTER TABLE `tpc_mentor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tpc_mentor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tpc_ta`
+--
+
+DROP TABLE IF EXISTS `tpc_ta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tpc_ta` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `number_of_session` int NOT NULL,
+  `avgrating` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tpc_ta`
+--
+
+LOCK TABLES `tpc_ta` WRITE;
+/*!40000 ALTER TABLE `tpc_ta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tpc_ta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tpc_users`
+--
+
+DROP TABLE IF EXISTS `tpc_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tpc_users` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tpc_users`
+--
+
+LOCK TABLES `tpc_users` WRITE;
+/*!40000 ALTER TABLE `tpc_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tpc_users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-06-24 20:51:53
