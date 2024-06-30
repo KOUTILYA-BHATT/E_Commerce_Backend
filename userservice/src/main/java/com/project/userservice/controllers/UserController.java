@@ -22,6 +22,11 @@ public class UserController {
         return UserDto.from(user);
     }
 
+    @GetMapping("/{id}")
+    public UserDto getuser(@PathVariable("id") Long id){
+        return new UserDto("koutilya","koutilya.bhatt@gmail.com");
+    }
+
     @PostMapping("/login")
     public Token login(@RequestBody LogInRequestDto requestDto){
         Token token = userService.login(requestDto.getEmail(),requestDto.getPassword());

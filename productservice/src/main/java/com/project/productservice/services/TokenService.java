@@ -1,6 +1,7 @@
 package com.project.productservice.services;
 
 import com.project.productservice.dtos.UserDto;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
