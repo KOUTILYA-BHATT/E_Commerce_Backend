@@ -1,11 +1,13 @@
 package com.project.productservice.services;
 
+import com.project.productservice.configurations.RedisTemplateConfigurations;
 import com.project.productservice.dtos.FakeStoreProductDto;
 import com.project.productservice.dtos.UserDto;
 import com.project.productservice.models.Category;
 import com.project.productservice.models.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,14 +20,22 @@ public class FakeProductService implements ProductService{
 
     private RestTemplate restTemplate;
     private RestTemplate fakeStoreRestTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
-    public FakeProductService(@Qualifier("LoadBalancingRestTemplate") RestTemplate restTemplate, @Qualifier("FakeStoreRestTemplate") RestTemplate fakeStoreRestTemplate) {
+    public FakeProductService(@Qualifier("LoadBalancingRestTemplate") RestTemplate restTemplate, @Qualifier("FakeStoreRestTemplate") RestTemplate fakeStoreRestTemplate, RedisTemplate<String, Object> redisTemplate) {
         this.restTemplate = restTemplate;
         this.fakeStoreRestTemplate = fakeStoreRestTemplate;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
     public Product getProductById(Long id) {
+        //Check if product exists in cache
+        Product product = (Product) redisTemplate.opsForHash().get("PRODUCTS", "PRODUCTS_"+id);
+        if(product != null) {
+            // Cache HIT
+            return product;
+        }
         System.out.println("getProductById");
         UserDto userDto = restTemplate.getForObject("https://userservice:9000/users/1", UserDto.class);
         if(userDto == null){
@@ -34,7 +44,9 @@ public class FakeProductService implements ProductService{
         FakeStoreProductDto fakeStoreProductDto = fakeStoreRestTemplate.getForObject(
                 "https://fakestoreapi.com/products/"+id,
                 FakeStoreProductDto.class);
-        return convertDtoToProduct(fakeStoreProductDto);
+        product = convertDtoToProduct(fakeStoreProductDto);
+        redisTemplate.opsForHash().put("PRODUCTS", "PRODUCTS_" + product.getId(), product);
+        return product;
     }
 
     @Override
