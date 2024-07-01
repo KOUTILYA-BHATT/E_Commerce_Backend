@@ -12,11 +12,13 @@
         <module name="userservice" />
         <module name="productservice" />
         <module name="gatewayservice" />
+        <module name="emailservice" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="emailservice" options="-parameters" />
       <module name="gatewayservice" options="-parameters" />
       <module name="paymentservice" options="-parameters" />
       <module name="productservice" options="-parameters" />
